@@ -1,38 +1,154 @@
-.App {
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+
+h5 {
+  color: #f4f49e;
+  font-size: 80px !important;
+  font-weight: 400;
+  font-family: "Lobster Two", cursive;
+}
+
+h6 {
+  color: #8cdadb;
+  font-size: 28px;
+  font-family: "Quicksand", sans-serif;
+}
+
+button {
+  font-size: 16px;
+  padding: 5px;
+  margin: 0 auto;
+  border: 1px solid white;
+  background: #f4f49e;
+  font-family: "Quicksand", sans-serif;
+  border-radius: 10px;
+}
+
+button:hover {
+  transition: all 200ms linear;
+  cursor: pointer;
+  background: white;
+  color: palevioletred;
+}
+
+.card {
+  display: block !important;
+  margin: 0 auto !important;
+  background-color: #856c8b !important;
+  font-family: "Quicksand", sans-serif !important;
+  padding: 20px !important;
+  max-width: 600px !important;
+}
+
+.card-end {
+  text-align: center;
+  display: block;
+  border-color: transparent;
+  padding: 0;
+}
+
+.buttons {
+  text-decoration: none;
+  color: grey;
+}
+
+.current-date {
+  color: #8cdadb;
+  font-size: 36px;
+  font-family: "Quicksand", sans-serif;
+}
+
+.current-icon {
+  font-size: 40px;
+  padding: 0px;
+  color: #f4f49e;
+}
+
+.current-temp {
+  font-size: 50px;
+  color: #f4f49e;
+  text-decoration: none;
+}
+
+.active {
+  color: #f4f49e;
+  font-weight: 300;
+  text-decoration: none;
+  cursor: default;
+  padding: 0px;
+}
+
+#forecast {
+  font-size: 24px;
+  color: white;
+  max-width: 600px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.description {
+  color: white;
+  font-size: 40px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.most-searched {
+  color: #d4ebd0;
+  font-size: 28px;
+  font-family: "Lobster Two", cursive;
+}
+.most-cities {
+  color: #9ddcdc;
+  font-size: 16px;
+  text-align: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+a:hover {
+  cursor: pointer;
+  background: white;
+  color: #e67a7a;
+}
+
+.footer {
+  font-family: "Courier New", Courier, monospace;
+  display: block;
+  margin: 0 auto;
+  font-size: 24px;
+  text-align: center;
+  color: #6789ba;
+}
+
+#separator {
+  color: #f4f49e;
+  font-size: 30px;
+  padding: 0px;
+}
+
+#celsius {
+  background-color: transparent;
+  font-size: 30px;
+  text-decoration: none;
+}
+#fahrenheit {
+  background-color: transparent;
+  font-size: 30px;
+  text-decoration: none;
+}
+
+.weather-forecast-temperature {
+  font-size: 16px;
+  text-align: center;
+  color: white;
+  max-width: 600px;
+  text-align: center;
+}
+.weather-forecast-temperature-max {
+  padding: 15px;
+}
+.weather-forecast-temperature-mix {
+  padding: 15px;
+}
+.weather-forecast-date {
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.App {
+  margin: 10px;
 }
