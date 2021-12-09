@@ -86,7 +86,8 @@ button:hover {
 
 .description {
   color: white;
-  font-size: 40px;
+  font-size: 20px;
+  list-style: none;
 }
 
 .most-searched {
