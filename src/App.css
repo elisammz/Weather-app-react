@@ -1,9 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
 
 h5 {
   color: #f4f49e;
   font-size: 80px !important;
-  font-weight: 400;
   font-family: "Lobster Two", cursive;
 }
 
@@ -150,5 +150,9 @@ a:hover {
 }
 
 .App {
-  margin: 10px;
+  margin-top: 10px;
+}
+
+.row {
+  flex-wrap: nowrap !important;
 }

@@ -1,36 +1,41 @@
+import React from "react";
+
+import SearchEngine from "./SearchEngine";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 export default function Weather() {
   return (
-    <div className="App">
+    <div className="App ">
       <div className="card">
-        <form id="my-input" autocomplete="off" className="mb-3">
-          <div className="row">
+        <div className="row">
+          <form id="my-input" autocomplete="off" className="mb-3">
             <div className="col-6">
-              <input
-                type="search"
-                placeholder="Enter a city"
-                id="city"
-                className="form-control"
-              />
+              <div className="row">
+                <input
+                  type="search"
+                  placeholder="Enter a city"
+                  id="city"
+                  className="form-control "
+                />{" "}
+                <div className="col">
+                  <button id="search-button">
+                    <a href="/" className="buttons">
+                      Search
+                    </a>
+                  </button>
+                </div>
+                <div className="col">
+                  <button className=" " id="current-button">
+                    <a href="/" className="buttons">
+                      Current
+                    </a>
+                  </button>
+                </div>
+              </div>
             </div>
-            <div className="col-3">
-              <button id="search-button">
-                <a href="/" className="buttons">
-                  Search
-                </a>
-              </button>
-            </div>
-            <div className="col-3">
-              <button id="current-button">
-                <a href="/" className="buttons">
-                  Current
-                </a>
-              </button>
-            </div>
-          </div>
-        </form>
+          </form>
+        </div>
 
         <h5 className="card-title" id="title-city">
           Tokyo
@@ -68,6 +73,7 @@ export default function Weather() {
             <div>Tue 10°C</div>
           </div>
         </div>
+
         <hr />
         <div className="card card-end">
           <span className="most-searched">Learn about climate crisis</span>
