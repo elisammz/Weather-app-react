@@ -5,13 +5,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 export default function Weather() {
-  let [city, setCity] = useState("tokyo");
-  const [temperature, setTemperature] = useState(false);
-  const [description, setDescription] = useState("");
+  let [city, setCity] = useState("Tokyo");
+  const [temperature, setTemperature] = useState();
+  let [description, setDescription] = useState("");
+  let cityName = city;
 
   function showTemperature(response) {
     setTemperature(true);
     setTemperature(Math.round(response.data.main.temp));
+
     setDescription(
       <ul className="description">
         <li>Temperature: {Math.round(response.data.main.temp)}˚C</li>
@@ -34,205 +36,105 @@ export default function Weather() {
 
   function handleSubmit(event) {
     event.preventDefault();
-
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=7b82360a89d434b6c2917003378b2c60&units=metric`;
     console.log(url);
     axios.get(url).then(showTemperature);
   }
 
-  if (temperature === false) {
-    return (
-      <div className="App ">
-        <div className="card">
-          <div className="row">
-            <form
-              id="my-input"
-              autoComplete="off"
-              className="mb-3"
-              onSubmit={handleSubmit}
-            >
-              <div className="col-6">
-                <div className="row">
-                  <input
-                    type="search"
-                    placeholder="Enter a city"
-                    id="city"
-                    className="form-control "
-                    onChange={UpdateCity}
-                  />{" "}
-                  <div className="col">
-                    <button id="search-button">
-                      <a href="/" className="buttons">
-                        Search
-                      </a>
-                    </button>
-                  </div>
-                  <div className="col">
-                    <button className=" " id="current-button">
-                      <a href="/" className="buttons">
-                        Current
-                      </a>
-                    </button>
-                  </div>
+  return (
+    <div className="App ">
+      <div className="card">
+        <div className="row">
+          <form
+            id="my-input"
+            autoComplete="off"
+            className="mb-3"
+            onSubmit={handleSubmit}
+          >
+            <div className="col-6">
+              <div className="row">
+                <input
+                  type="search"
+                  placeholder="Enter a city"
+                  id="city"
+                  className="form-control "
+                  onChange={UpdateCity}
+                />{" "}
+                <div className="col">
+                  <button id="search-button">
+                    <a href="/" className="buttons" onChange={UpdateCity}>
+                      Search
+                    </a>
+                  </button>
+                </div>
+                <div className="col">
+                  <button className=" " id="current-button">
+                    <a href="/" className="buttons">
+                      Current
+                    </a>
+                  </button>
                 </div>
               </div>
-            </form>
-          </div>
-
-          <h5 className="card-title" id="title-city">
-            Tokyo
-          </h5>
-
-          <div className="current-date">Today</div>
-          <h6 id="current-date">Mon 29 Nov</h6>
-          <br />
-
-          <div className="row">
-            <div className="col-5">
-              <br />
-              <i id="icon" className="far fa-sun current-icon "></i>
-              <div>
-                <span className="current-temp" id="temperature">
-                  8{" "}
-                </span>
-                <a href="/" id="celsius" className="active">
-                  <sup>°C</sup>{" "}
-                </a>
-                <span className="current-temp" id="separator">
-                  {" "}
-                  <sup>|</sup>{" "}
-                </span>
-                <a href="/" id="fahrenheit">
-                  <sup>°F</sup>
-                </a>
-              </div>
-              <div className="description" id="description"></div>
             </div>
+          </form>
+        </div>
 
-            <div className="col-6" id="forecast">
-              {description}
-            </div>
-          </div>
+        <h5 className="card-title" id="title-city">
+          {cityName}
+        </h5>
 
-          <hr />
-          <div className="card card-end">
-            <span className="most-searched">Learn about climate crisis</span>
+        <div className="current-date">Today</div>
+        <h6 id="current-date">Mon 29 Nov</h6>
+        <br />
+
+        <div className="row">
+          <div className="col-5">
+            <br />
+            <i id="icon" className="far fa-sun current-icon "></i>
             <div>
-              <a
-                href="https://www.bbc.com/news/science-environment-56837908"
-                target="blank"
-                className="card-link most-cities"
-              >
-                Latest news from BBC
+              <span className="current-temp" id="temperature">
+                {temperature}
+              </span>
+              <a href="/" id="celsius" className="active">
+                <sup>°C</sup>{" "}
               </a>
-              <a
-                href="https://edition.cnn.com/specials/world/cnn-climate"
-                target="blank"
-                className="card-link most-cities"
-              >
-                Latest news from CNN
+              <span className="current-temp" id="separator">
+                {" "}
+                <sup>|</sup>{" "}
+              </span>
+              <a href="/" id="fahrenheit">
+                <sup>°F</sup>
               </a>
             </div>
+            <div className="description" id="description"></div>
+          </div>
+
+          <div className="col-6" id="forecast">
+            {description}
+          </div>
+        </div>
+
+        <hr />
+        <div className="card card-end">
+          <span className="most-searched">Learn about climate crisis</span>
+          <div>
+            <a
+              href="https://www.bbc.com/news/science-environment-56837908"
+              target="blank"
+              className="card-link most-cities"
+            >
+              Latest news from BBC
+            </a>
+            <a
+              href="https://edition.cnn.com/specials/world/cnn-climate"
+              target="blank"
+              className="card-link most-cities"
+            >
+              Latest news from CNN
+            </a>
           </div>
         </div>
       </div>
-    );
-  } else {
-    return (
-      <div className="App ">
-        <div className="card">
-          <div className="row">
-            <form
-              id="my-input"
-              autoComplete="off"
-              className="mb-3"
-              onSubmit={handleSubmit}
-            >
-              <div className="col-6">
-                <div className="row">
-                  <input
-                    type="search"
-                    placeholder="Enter a city"
-                    id="city"
-                    className="form-control "
-                    onChange={UpdateCity}
-                  />{" "}
-                  <div className="col">
-                    <button id="search-button">
-                      <a href="/" className="buttons">
-                        Search
-                      </a>
-                    </button>
-                  </div>
-                  <div className="col">
-                    <button className=" " id="current-button">
-                      <a href="/" className="buttons">
-                        Current
-                      </a>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-
-          <h5 className="card-title" id="title-city">
-            {city}
-          </h5>
-
-          <div className="current-date">Today</div>
-          <h6 id="current-date">Mon 29 Nov</h6>
-          <br />
-
-          <div className="row">
-            <div className="col-5">
-              <br />
-              <i id="icon" className="far fa-sun current-icon "></i>
-              <div>
-                <span className="current-temp" id="temperature">
-                  8{" "}
-                </span>
-                <a href="/" id="celsius" className="active">
-                  <sup>°C</sup>{" "}
-                </a>
-                <span className="current-temp" id="separator">
-                  {" "}
-                  <sup>|</sup>{" "}
-                </span>
-                <a href="/" id="fahrenheit">
-                  <sup>°F</sup>
-                </a>
-              </div>
-              <div className="description" id="description"></div>
-            </div>
-
-            <div className="col-6" id="forecast">
-              {description}
-            </div>
-          </div>
-
-          <hr />
-          <div className="card card-end">
-            <span className="most-searched">Learn about climate crisis</span>
-            <div>
-              <a
-                href="https://www.bbc.com/news/science-environment-56837908"
-                target="blank"
-                className="card-link most-cities"
-              >
-                Latest news from BBC
-              </a>
-              <a
-                href="https://edition.cnn.com/specials/world/cnn-climate"
-                target="blank"
-                className="card-link most-cities"
-              >
-                Latest news from CNN
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+    </div>
+  );
 }
