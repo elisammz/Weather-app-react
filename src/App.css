@@ -49,6 +49,13 @@ button:hover {
 .buttons {
   text-decoration: none;
   color: grey;
+  font-size: 16px;
+  padding: 5px;
+  margin: 0 auto;
+  border: 1px solid white;
+  background: #f4f49e;
+  font-family: "Quicksand", sans-serif;
+  border-radius: 10px;
 }
 
 .current-date {
@@ -156,4 +163,8 @@ a:hover {
 
 .row {
   flex-wrap: nowrap !important;
+}
+
+.list-description {
+  list-style-type: none;
 }
