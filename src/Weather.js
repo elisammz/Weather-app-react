@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import FormattedDate from "./FormattedDate";
+import WeatherInfo from "./WeatherInfo";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -8,12 +10,11 @@ export default function Weather(props) {
   let [description, setDescription] = useState({ ready: false });
 
   function handleSubmit(response) {
-    console.log(response.data);
     setDescription({
       ready: true,
       temperature: response.data.main.temp,
       humidity: response.data.main.humidity,
-      date: "Today Monday 12:00",
+      date: new Date(response.data.dt * 1000),
       wind: response.data.wind.speed,
       city: response.data.name,
       description: response.data.weather[0].description,
@@ -68,12 +69,14 @@ export default function Weather(props) {
           </h5>
 
           <div className="current-date">Today</div>
-          <h6 id="current-date">Mon 29 Nov</h6>
+          <h6 id="current-date">
+            <FormattedDate date={description.date} />
+          </h6>
 
           <div className="row">
             <div className="col-5">
               <br />
-              <h6 id="current-date" className="text-capitalize">
+              <h6 id="current-date" className="text-capitalize description">
                 {description.description}
               </h6>
               <img
