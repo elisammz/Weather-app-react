@@ -3,6 +3,7 @@ import FormattedDate from "./FormattedDate";
 import WeatherIcon from "./WeatherIcon";
 import WeatherTemperature from "./WeatherTemperature";
 
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 export default function WeatherInfo(props) {
@@ -18,21 +19,18 @@ export default function WeatherInfo(props) {
       </h6>
 
       <div className="row">
-        <div className="col-5">
+        <div className="col-3">
           <br />
           <h6 id="current-date" className="text-capitalize description">
             {props.data.description}
           </h6>
-          <div>
+          <div className="row">
             <WeatherIcon code={props.data.icon} alt={props.data.description} />
-            <span>
-              <WeatherTemperature celsius={props.data.temperature} />
-            </span>
+            <WeatherTemperature celsius={props.data.temperature} />
           </div>
-          <div className="description" id="description"></div>
         </div>
 
-        <div className="col-6" id="forecast">
+        <div className="col-19" id="forecast">
           <ul className="list-description">
             <li>Humidity: {props.data.humidity}%</li>
             <li>Wind: {props.data.wind} km/h</li>
