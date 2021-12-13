@@ -105,7 +105,10 @@ export default function Weather(props) {
           </div>
         </div>
         <p className="footer">
-          <a href="https://github.com/elisammz/sheCodesPlus-EM" target="blank">
+          <a
+            href="https://github.com/elisammz/Weather-app-react"
+            target="blank"
+          >
             Open-source code
           </a>
           by Elisa Mendoza 👩🏽‍💻
