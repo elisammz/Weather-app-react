@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
-import FormattedDate from "./FormattedDate";
 import WeatherInfo from "./WeatherInfo";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 export default function Weather(props) {
+  const [city, setCity] = useState(props.defaultCity);
   let [description, setDescription] = useState({ ready: false });
 
-  function handleSubmit(response) {
+  function handleResponse(response) {
     setDescription({
       ready: true,
       temperature: response.data.main.temp,
@@ -18,8 +18,25 @@ export default function Weather(props) {
       wind: response.data.wind.speed,
       city: response.data.name,
       description: response.data.weather[0].description,
-      iconUrl: `https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png`,
+      icon: response.data.weather[0].icon,
+      iconUrl: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
     });
+  }
+
+  function search() {
+    const apiKey = "7b82360a89d434b6c2917003378b2c60";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${apiKey}&units=metric`;
+    let url = apiUrl;
+    axios.get(url).then(handleResponse);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    search();
+  }
+
+  function handleCityChange(event) {
+    setCity(event.target.value);
   }
 
   if (description.ready) {
@@ -40,7 +57,7 @@ export default function Weather(props) {
                     placeholder="Enter a city"
                     id="city"
                     className="form-control "
-                    onChange={""}
+                    onChange={handleCityChange}
                   />{" "}
                   <div className="col">
                     <input
@@ -64,51 +81,7 @@ export default function Weather(props) {
             </form>
           </div>
 
-          <h5 className="card-title" id="title-city">
-            {description.city}
-          </h5>
-
-          <div className="current-date">Today</div>
-          <h6 id="current-date">
-            <FormattedDate date={description.date} />
-          </h6>
-
-          <div className="row">
-            <div className="col-5">
-              <br />
-              <h6 id="current-date" className="text-capitalize description">
-                {description.description}
-              </h6>
-              <img
-                alt={description.description}
-                className="current-icon "
-                src={description.iconUrl}
-              />
-              <div>
-                <span className="current-temp" id="temperature">
-                  {Math.round(description.temperature)}
-                </span>
-                <a href="/" id="celsius" className="active">
-                  <sup>°C</sup>{" "}
-                </a>
-                <span className="current-temp" id="separator">
-                  {" "}
-                  <sup>|</sup>{" "}
-                </span>
-                <a href="/" id="fahrenheit">
-                  <sup>°F</sup>
-                </a>
-              </div>
-              <div className="description" id="description"></div>
-            </div>
-
-            <div className="col-6" id="forecast">
-              <ul className="list-description">
-                <li>Humidity: {description.humidity}%</li>
-                <li>Wind: {description.wind} km/h</li>
-              </ul>
-            </div>
-          </div>
+          <WeatherInfo data={description} />
 
           <hr />
           <div className="card card-end">
@@ -131,7 +104,7 @@ export default function Weather(props) {
             </div>
           </div>
         </div>
-        <p class="footer">
+        <p className="footer">
           <a href="https://github.com/elisammz/sheCodesPlus-EM" target="blank">
             Open-source code
           </a>
@@ -140,10 +113,7 @@ export default function Weather(props) {
       </div>
     );
   } else {
-    const apiKey = "7b82360a89d434b6c2917003378b2c60";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&APPID=${apiKey}&units=metric`;
-    let url = apiUrl;
-    axios.get(url).then(handleSubmit);
+    search();
     return "Loading...";
   }
 }
