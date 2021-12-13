@@ -25,7 +25,9 @@ export default function WeatherInfo(props) {
           </h6>
           <div>
             <WeatherIcon code={props.data.icon} alt={props.data.description} />
-            <WeatherTemperature celsius={props.data.temperature} />
+            <span>
+              <WeatherTemperature celsius={props.data.temperature} />
+            </span>
           </div>
           <div className="description" id="description"></div>
         </div>
