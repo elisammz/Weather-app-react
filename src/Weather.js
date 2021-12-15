@@ -72,14 +72,6 @@ export default function Weather(props) {
                       onChange={""}
                     />
                   </div>
-                  <div className="col">
-                    <input
-                      type="submit"
-                      value="Current"
-                      className="btn buttons"
-                      id="current-button"
-                    />
-                  </div>
                 </div>
               </div>
             </form>
@@ -115,8 +107,8 @@ export default function Weather(props) {
             href="https://github.com/elisammz/Weather-app-react"
             target="blank"
           >
-            Open-source code
-          </a>
+            Open-sourced code
+          </a>{" "}
           by Elisa Mendoza 👩🏽‍💻
         </p>
       </div>
