@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import WeatherInfo from "./WeatherInfo";
+import WeatherForecast from "./WeatherForecast";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -10,8 +11,11 @@ export default function Weather(props) {
   let [description, setDescription] = useState({ ready: false });
 
   function handleResponse(response) {
+    console.log(response.data);
+
     setDescription({
       ready: true,
+      coordinates: response.data.coord,
       temperature: response.data.main.temp,
       humidity: response.data.main.humidity,
       date: new Date(response.data.dt * 1000),
@@ -26,8 +30,8 @@ export default function Weather(props) {
   function search() {
     const apiKey = "7b82360a89d434b6c2917003378b2c60";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${apiKey}&units=metric`;
-    let url = apiUrl;
-    axios.get(url).then(handleResponse);
+    axios.get(apiUrl).then(handleResponse);
+    console.log(apiUrl);
   }
 
   function handleSubmit(event) {
@@ -84,6 +88,8 @@ export default function Weather(props) {
           <WeatherInfo data={description} />
 
           <hr />
+          <WeatherForecast coordinates={description.coordinates} />
+
           <div className="card card-end">
             <span className="most-searched">Learn about climate crisis</span>
             <div>
