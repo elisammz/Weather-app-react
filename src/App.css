@@ -64,12 +64,6 @@ button:hover {
   font-family: "Quicksand", sans-serif;
 }
 
-.current-icon {
-  font-size: 40px;
-  padding: 0px;
-  color: #f4f49e;
-}
-
 .current-temp {
   font-size: 50px;
   color: #f4f49e;

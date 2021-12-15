@@ -1,12 +1,10 @@
 .WeatherForecast {
   text-align: center;
+  color: white;
 }
 
 .WeatherForecast-min {
+  color: white;
   opacity: 0.6;
   margin-left: 5px;
-}
-
-.WeatherForecast-icon {
-  size: 20;
 }
