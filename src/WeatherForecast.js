@@ -3,6 +3,7 @@ import WeatherIcon from "./WeatherIcon";
 
 import "./WeatherForecast.css";
 import axios from "axios";
+import WeatherForecastDay from "./WeatherForecastDay";
 
 export default function WeatherForecast(props) {
   let [loaded, setLoaded] = useState(false);
@@ -18,11 +19,7 @@ export default function WeatherForecast(props) {
       <div className="WeatherForecast">
         <div className="row">
           <div className="col">
-            Mon <WeatherIcon code="01d" size={32} />
-            <div className="WeatherForecast-temperature">
-              <span className="WeatherForecast-max">19</span>
-              <span className="WeatherForecast-min">11</span>
-            </div>
+            <WeatherForecastDay data={forecast[0]} />
           </div>
         </div>
       </div>
@@ -31,7 +28,7 @@ export default function WeatherForecast(props) {
     let apiKey = "7b82360a89d434b6c2917003378b2c60";
     let latitude = props.coordinates.lat;
     let longitude = props.coordinates.lat;
-    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}
+    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric
 `;
     axios.get(apiUrl).then(handleResponse);
 
